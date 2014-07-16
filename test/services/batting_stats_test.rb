@@ -14,7 +14,7 @@ describe BattingStats do
 
     describe "with the specified fixtures" do
       it "should return the right player" do
-        result[:player_id].must_equal 'aaronha01'
+        result[:player_id].must_equal 'hunteto01'
       end
     end
   end

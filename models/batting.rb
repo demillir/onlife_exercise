@@ -31,10 +31,14 @@ class Batting
 
   # Returns an array of the Batting objects that match the given year and that have at least the given number of at-bats.
   def self.gather_averages(year:, at_least_at_bats:)
-    case year
-    when 2009; [self.new(player_id: 'aaronha01', hits: 211, at_bats: 1000)]
-    else;      [self.new(player_id: 'aaronha01', hits: 320, at_bats: 1000)]
-    end
+    year             = year.to_i
+    at_least_at_bats = at_least_at_bats.to_i
+
+    @@objects.values.find_all { |batting|
+      batting.year == year &&
+        batting.at_bats >= at_least_at_bats &&
+        Player.find_by_id(batting.player_id)
+    }
   end
 
   # Returns the floating point result of dividing hits by at-bats.

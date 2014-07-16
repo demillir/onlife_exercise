@@ -1,8 +1,44 @@
 # The BattingsStats service compiles statistical summaries from raw model objects.
 
+require 'models/batting'
+require 'models/player'
+
 class BattingStats
-  def most_improved_avg(year:)
-    {year: year, player_id: 'aaronha01', birth_year: 1934, first_name: 'Hank', last_name: 'Aaron', batting_avg: 0.32, prev_batting_avg: 0.211}
+  # Returns a hash table of information about the player with the most improved batting average for the
+  # given year.  The batting average improvement is calculated as the numerical increase from the previous year.
+  # For example, if a player had a .222 batting average in 2009 and a .280 batting average in 2010, then the
+  # improvement is 0.058.
+  #
+  # To be a candidate for most-improved, a player must have had at least a certain number of at-bats in both
+  # the given year and in the year prior to the given year.  The default threshhold is 200 at-bats, but
+  # the caller can specify the threshhold with the +at_lead_at_bats+ argument.
+  def most_improved_avg(year:, at_least_at_bats: 200)
+    # Gather up all the Batting records for the given year and the prior year.
+    # Reject the records that don't meet the at-bats requirement.
+    # Make a look-up table (LUT) for each year's set of records, keyed by the player ID.
+    curr_battings = Batting.gather_averages(year: year,   at_least_at_bats: at_least_at_bats).each_with_object({}) { |b, h| h[b.player_id] = b }
+    prev_battings = Batting.gather_averages(year: year-1, at_least_at_bats: at_least_at_bats).each_with_object({}) { |b, h| h[b.player_id] = b }
+
+    # Extract the IDs of the players that have qualifying Batting records in both the given year and the previous year.
+    player_ids = (curr_battings.keys & prev_battings.keys).uniq
+    return {} if player_ids.empty?
+
+    # Find the player with the maximum delta in batting average.
+    best_player_id = player_ids.max_by { |player_id|
+      curr_battings[player_id].batting_avg.to_f - prev_battings[player_id].batting_avg.to_f
+    }
+    player = Player.find_by_id!(best_player_id)
+
+    # Assemble and return a hash table with the batting average information about the player.
+    {
+      year:             year,
+      player_id:        player.player_id,
+      birth_year:       player.birth_year,
+      first_name:       player.first_name,
+      last_name:        player.last_name,
+      batting_avg:      curr_battings[player.player_id].batting_avg.to_f,
+      prev_batting_avg: prev_battings[player.player_id].batting_avg.to_f,
+    }
   end
 
   def slugging_percentages(year:, team: nil)

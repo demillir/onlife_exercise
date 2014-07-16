@@ -11,6 +11,12 @@ describe BattingStats do
       result.must_be_kind_of Hash
       result.keys.must_include :player_id
     end
+
+    describe "with the specified fixtures" do
+      it "should return the right player" do
+        result[:player_id].must_equal 'aaronha01'
+      end
+    end
   end
 
   describe "#slugging_percentages" do

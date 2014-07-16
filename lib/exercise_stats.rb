@@ -9,6 +9,9 @@
 # Objects from this class are simply plain-old Ruby hash tables with an extra #to_text method.
 # The #to_text method knows how to render the the hash table in a human-readable format for display on a terminal.
 
+require 'services/batting_stats'
+require 'services/triple_crown_stats'
+
 class ExerciseStats < Hash
 
   # Returns a hash table of the statistics required by the coding exercise specification in
@@ -23,19 +26,15 @@ class ExerciseStats < Hash
   #                                              league: "NL",
   #                                              player: {player_id:  "acostme01", birth_year: 1896, first_name: "Merito", last_name: "Acosta"}}]}
   def self.compile
+    # These objects will perform the statistics compilation.
+    batting_stats = BattingStats.new
+    crown_stats   = TripleCrownStats.new
+
     # Return a hash table that has been cast as an ExerciseStats object.
     self[
-      most_improved_batting_avg_2010:       {player_id: 'aaronha01', birth_year: 1934, first_name: 'Hank', last_name: 'Aaron', batting_avg: 0.32, prev_batting_avg: 0.211},
-      slugging_percentages_Oakland_As_2007: [
-                                              {player_id: 'bradlmi01', birth_year: 1978, first_name: 'Milton', last_name: 'Bradley', year: 2007, slugging_perc: 28.777},
-                                              {player_id: 'duchsju01', birth_year: 1977, first_name: 'Justin', last_name: 'Duchscherer', year: 2007, slugging_perc: 32.1},
-                                            ],
-      triple_crown_winners:                 [
-                                              {year: 2011, league: 'AL', player: nil},
-                                              {year: 2011, league: 'NL', player: nil},
-                                              {year: 2012, league: 'AL', player: nil},
-                                              {year: 2012, league: 'NL', player: {player_id: 'acostme01', birth_year: 1896, first_name: 'Merito', last_name: 'Acosta'}},
-                                            ],
+      most_improved_batting_avg_2010:       batting_stats.most_improved_avg(year: 2010),
+      slugging_percentages_Oakland_As_2007: batting_stats.slugging_percentages(year: 2007, team: 'OAK'),
+      triple_crown_winners:                 crown_stats.winners(year: 2011) + crown_stats.winners(year: 2012),
     ]
   end
 

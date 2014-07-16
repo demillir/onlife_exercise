@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Any Ruby 2.x will do.
+# Any Ruby >= 2.1 will do.
 ruby '2.1.2'
 
 gem 'activesupport',        '~> 4.0.8'             # for JSON output formatting

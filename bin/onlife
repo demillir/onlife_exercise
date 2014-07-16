@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+# This executable file loads the Ruby code libraries needed by the OnLife Coding Exercise application and then
+# passes control to that application.  The supporting code libraries are specified in the Gemfile file, and
+# are loaded by the Bundler gem.  The application's command line interface is implemented by a Thor class
+# named ExerciseApp.
+
+# Use Bundler to load the supporting gems listed in the Gemfile file.
+require 'pathname'
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path("../../Gemfile", Pathname.new(__FILE__).realpath)
+require 'rubygems'
+require 'bundler/setup'
+
+# Run the CLI implemented by the ExerciseApp class in lib/exercise_app.rb.
+$: << File.expand_path("../..", Pathname.new(__FILE__).realpath)
+require 'lib/exercise_app'
+ExerciseApp.start

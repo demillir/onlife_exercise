@@ -1,0 +1,45 @@
+== OnLife Coding Exercise
+
+This repository contains the code for a solution to the OnLife Coding Exercise.
+The specification for the exercise is in <tt>exercise/Dev+Candidate+Exercise.pdf</tt>.
+
+=== Installing the application
+
+If you are installing from a compressed tar file, simply unpack the tar file:
+   tar xvfz onfile.tgz
+
+Otherwise, if you have installed the application by cloning a git repository,
+you will need the bundler gem installed,
+and then you can use the <tt>bundle install</tt> command to download the application's supporting gems:
+   gem install bundler
+   bundle install --path=vendor
+
+You may need to change the Ruby version specified in the Gemfile.
+Any Ruby 2.x should be able to run the application.
+
+=== Running the application
+
+The application has a command line interface.
+To run the application, execute <tt>bin/onlife</tt> or <tt>bin/onlife stats</tt>.
+
+==== Command line options
+
+A number of options are available.
+The options can be listed by running <tt>bin/onlife help stats</tt>.
+The options include:
+
+* <tt>--format</tt>, for choosing JSON, XML, or text (default) as the output format
+
+* <tt>--outfile</tt>, for specifying an output file.  If this option is omitted, the output is sent to the screen.
+
+* <tt>--player-data</tt>, <tt>--batting-data</tt>.  These options specify the input data files.
+
+=== Running the test suite
+
+The application includes an automated test suite.
+You can run the full suite with <tt>rake</tt> or <tt>rake test</tt> command.
+
+=== Ruby version
+
+The application was written for Ruby 2.1.2, but it should work with any Ruby 2.x.
+The Ruby version is specified in the Gemfile, if you need to change it.

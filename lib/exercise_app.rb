@@ -5,6 +5,8 @@ require 'thor'
 require 'lib/exercise_stats'
 require 'active_support/builder'
 require 'active_support/core_ext'
+require 'parsers/player_loader'
+require 'parsers/batting_loader'
 
 class ExerciseApp < Thor
   desc "stats", "Outputs several Major League Baseball statistics"
@@ -14,6 +16,11 @@ class ExerciseApp < Thor
   method_option :outfile,      desc: 'Output file. If omitted, output goes to the terminal.'
   default_task :stats
   def stats
+    # Load the input files into memory before compiling any stats.
+    PlayerLoader.load_csv(options[:player_data])
+    BattingLoader.load_csv(options[:batting_data])
+
+    # Compile and output the stats.
     stats_hash = ExerciseStats.compile
     open_output_file do |f|
       case options[:format].downcase

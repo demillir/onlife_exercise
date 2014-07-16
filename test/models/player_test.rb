@@ -9,6 +9,10 @@ describe Player do
       result.must_be_kind_of Player
     end
 
+    it "should find players by their ID" do
+      Player.find_by_id!('hendero01').last_name.must_equal 'Henderson'
+    end
+
     describe "with an ID that cannot be found" do
       let(:result) { Player.find_by_id!('unknown') }
 

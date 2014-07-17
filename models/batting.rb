@@ -41,8 +41,36 @@ class Batting
     }
   end
 
+  # Returns an array of Batting objects that match the given year and team.  If the given team is nil, all
+  # teams are considered.
+  def self.for_year_and_team(year:, team:)
+    year = year.to_i
+
+    @@objects.values.find_all { |batting|
+      batting.year == year &&
+        (team.nil? || batting.team == team) &&
+        Player.find_by_id(batting.player_id)
+    }
+  end
+
   # Returns the floating point result of dividing hits by at-bats.
   def batting_avg
     at_bats > 0 ? (hits.to_f / at_bats) : 0.0
+  end
+
+  # Returns the floating point slugging percentage, which is defined as:
+  #    100.0 * (singles + 2*doubles + 3*triples + 4*home_runs) / at_bats.
+  def slugging_percentage
+    at_bats > 0 ? (100.0 * slugging_points / at_bats) : 0.0
+  end
+
+  private
+
+  def slugging_points
+    singles + 2*doubles + 3*triples + 4*home_runs
+  end
+
+  def singles
+    hits - doubles - triples - home_runs
   end
 end

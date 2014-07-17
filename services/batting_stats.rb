@@ -41,10 +41,21 @@ class BattingStats
     }
   end
 
+  # Returns an array of player data hashes for players having a Batting record for the given year on the given team.
+  # If the given team is nil, all teams will be considered.  A player data hash looks like:
+  #    {year: year, team_id: team, player_id: 'bradlmi01', birth_year: 1978, first_name: 'Milton', last_name: 'Bradley', slugging_perc: 28.777}
   def slugging_percentages(year:, team: nil)
-    [
-      {year: year, team_id: team, player_id: 'bradlmi01', birth_year: 1978, first_name: 'Milton', last_name: 'Bradley', slugging_perc: 28.777},
-      {year: year, team_id: team, player_id: 'duchsju01', birth_year: 1977, first_name: 'Justin', last_name: 'Duchscherer', slugging_perc: 32.1},
-    ]
+    Batting.for_year_and_team(year: year, team: team).map { |batting|
+      player = Player.find_by_id!(batting.player_id)
+      {
+        year:          batting.year,
+        team_id:       batting.team,
+        player_id:     player.player_id,
+        birth_year:    player.birth_year,
+        first_name:    player.first_name,
+        last_name:     player.last_name,
+        slugging_perc: batting.slugging_percentage
+      }
+    }
   end
 end

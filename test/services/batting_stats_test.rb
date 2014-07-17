@@ -29,7 +29,7 @@ describe BattingStats do
     end
 
     describe "with a team filter" do
-      let(:result) { subject.slugging_percentages(year: 2012, team: 'OAK') }
+      let(:result) { subject.slugging_percentages(year: 2007, team: 'OAK') }
 
       it "should only return players who were on the given team" do
         result.map { |plyr| plyr[:team_id] }.uniq.must_equal ['OAK']

@@ -21,6 +21,72 @@ Any Ruby version >= 2.1 should be able to run the application.
 
 The application has a command line interface.
 To run the application, execute <tt>bin/onlife</tt> or <tt>bin/onlife stats</tt>.
+You should see the following output in your terminal:
+   Most Improved Batting Avg from 2009 to 2010: Josh Hamilton (hamiljo03)
+      2009 average: 0.268
+      2010 average: 0.359
+   
+   Oakland Athletic's 2007 Slugging Percentages:
+       66.7% Joe Kennedy (kennejo04)
+       63.9% Daric Barton (bartoda02)
+       50.4% Jack Cust (custja01)
+       47.4% Travis Buck (bucktr01)
+       45.5% Nick Swisher (swishni01)
+       44.6% Milton Bradley (bradlmi01)
+       44.6% Eric Chavez (chaveer01)
+       44.2% Rob Bowen (bowenro01)
+       44.1% Mark Ellis (ellisma01)
+       44.1% Donnie Murphy (murphdo01)
+       42.4% Jack Hannahan (hannaja01)
+       41.8% Dan Johnson (johnsda06)
+       41.4% Mike Piazza (piazzmi01)
+       40.8% Kurt Suzuki (suzukku01)
+       39.4% Shannon Stewart (stewash01)
+       36.1% Marco Scutaro (scutama01)
+       35.0% Chris Snelling (snellch02)
+       34.1% Bobby Crosby (crosbbo01)
+       32.1% Danny Putnam (putnada01)
+       29.6% Mark Kotsay (kotsama01)
+       29.2% Todd Walker (walketo04)
+       28.6% Jeff Davanon (davanje02)
+       28.1% Jason Kendall (kendaja01)
+       26.9% Adam Melhuse (melhuad01)
+       25.0% Lenny DiNardo (dinarle01)
+       23.5% Hiram Bocachica (bocachi01)
+       23.5% J.J. Furmaniak (furmajj01)
+       22.9% Bobby Kielty (kieltbo01)
+        7.1% Kevin Thompson (thompke01)
+        0.0% Joe Blanton (blantjo01)
+        0.0% Jerry Blevins (blevije01)
+        0.0% Dallas Braden (bradeda01)
+        0.0% Andrew Brown (brownan01)
+        0.0% Dee Brown (brownde02)
+        0.0% Kiko Calero (calerki01)
+        0.0% Santiago Casilla (garcija01)
+        0.0% Justin Duchscherer (duchsju01)
+        0.0% Alan Embree (embreal01)
+        0.0% Ron Flores (florero01)
+        0.0% Chad Gaudin (gaudich01)
+        0.0% Rich Harden (harderi01)
+        0.0% Danny Haren (harenda01)
+        0.0% Shane Komine (kominsh01)
+        0.0% Ryan Langerhans (langery01)
+        0.0% Colby Lewis (lewisco01)
+        0.0% Esteban Loaiza (loaizes01)
+        0.0% Ruddy Lugo (lugoru01)
+        0.0% Jay Marshall (marshja01)
+        0.0% Kevin Melillo (melilke01)
+        0.0% Dan Meyer (meyerda02)
+        0.0% Erasmo Ramirez (ramirer01)
+        0.0% Connor Robertson (roberco01)
+        0.0% Huston Street (streehu01)
+        0.0% Jay Witasick (witasja01)
+   
+   Triple Crown Winners:
+      2011 -- AL: (No winner)
+      2011 -- NL: (No winner)
+      2012 -- AL: Miguel Cabrera (cabremi01)
+      2012 -- NL: (No winner)
 
 ==== Command line options
 

@@ -29,26 +29,14 @@ class Batting
     }
   end
 
-  # Returns an array of the Batting objects that match the given year and that have at least the given number of at-bats.
-  def self.gather_averages(year:, at_least_at_bats:)
-    year             = year.to_i
-    at_least_at_bats = at_least_at_bats.to_i
-
+  # Returns an array of Batting objects that match the given year and/or team and/or league
+  # and/or have at least the given number of at-bats.
+  def self.find_by(year: nil, team: nil, league: nil, at_least_at_bats: nil)
     @@objects.values.find_all { |batting|
-      batting.year == year &&
-        batting.at_bats >= at_least_at_bats &&
-        Player.find_by_id(batting.player_id)
-    }
-  end
-
-  # Returns an array of Batting objects that match the given year and team.  If the given team is nil, all
-  # teams are considered.
-  def self.for_year_and_team(year:, team:)
-    year = year.to_i
-
-    @@objects.values.find_all { |batting|
-      batting.year == year &&
+      (year.nil? || batting.year == year.to_i) &&
         (team.nil? || batting.team == team) &&
+        (league.nil? || batting.league == league) &&
+        (at_least_at_bats.nil? || batting.at_bats >= at_least_at_bats.to_i) &&
         Player.find_by_id(batting.player_id)
     }
   end

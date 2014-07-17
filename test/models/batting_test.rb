@@ -2,17 +2,8 @@ require 'test_helper'
 require 'models/batting'
 
 describe Batting do
-  describe ".gather_averages" do
-    let(:result) { Batting.gather_averages(year: 2010, at_least_at_bats: 200) }
-
-    it "should return an array of Batting objects" do
-      result.must_be_kind_of Array
-      result.map(&:class).uniq.must_equal [Batting]
-    end
-  end
-
-  describe ".for_year_and_team" do
-    let(:result) { Batting.for_year_and_team(year: 2010, team: nil) }
+  describe ".find_by" do
+    let(:result) { Batting.find_by(year: 2010) }
 
     it "should return an array of Batting objects" do
       result.must_be_kind_of Array

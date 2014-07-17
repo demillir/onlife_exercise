@@ -6,7 +6,7 @@ The specification for the exercise is in <tt>exercise/Dev+Candidate+Exercise.pdf
 === Installing the application
 
 If you are installing from a compressed tar file, simply unpack the tar file:
-   tar xvfz onfile.tgz
+   tar xvfz onlife.tgz
 
 Otherwise, if you have installed the application by cloning a git repository,
 you will need the bundler gem installed,

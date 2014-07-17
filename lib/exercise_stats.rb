@@ -51,7 +51,7 @@ class ExerciseStats < Hash
     # Render the slugging percentages.
     result << "\nOakland Athletic's 2007 Slugging Percentages:\n"
     players = self[:slugging_percentages_Oakland_As_2007]
-    sorted_players = players.sort_by { |p| [p[:last_name].to_s, p[:first_name].to_s, p[:player_id].to_s] }
+    sorted_players = players.sort_by { |p| [1000.0 - p[:slugging_perc], p[:last_name].to_s, p[:first_name].to_s, p[:player_id].to_s] }
     sorted_players.each do |plyr|
       formatted_perc = '%5.1f%%' % plyr[:slugging_perc]
       result << "   #{formatted_perc} #{player_label(plyr)}\n"

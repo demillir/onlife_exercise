@@ -1,0 +1,1 @@
+var search_data = {"index":{"searchIndex":["readme"],"longSearchIndex":[""],"info":[["README","","README_rdoc.html","","<p>OnLife Coding Exercise\n<p>This repository contains the code for a solution to the OnLife Coding\nExercise …\n"]]}}
